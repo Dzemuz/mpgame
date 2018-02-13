@@ -18,20 +18,25 @@ public class Game_Main {
 
 	public static int fps;
 	/**
-	 * Launch the application.
+	 * Launch the application. 
 	 */
 	public static void main(String[] args) {
 		/*deklaracja graczy+mapy*/
 		
 		String username = JOptionPane.showInputDialog(null, "What will your nickname be?");  //komunikat z wyborem imienia
+		if(username.isEmpty())
+			username = "player1";
+			
 		player = new Player(username, Color.BLACK);
 		players = new ArrayList<Player>();
 		players.add(player);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					window = new Frame();
 					window.frame.setVisible(true);
+					window.gameView.requestFocus();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,7 +44,7 @@ public class Game_Main {
 		});
 		
 		try {
-			TimeUnit.SECONDS.sleep(2);
+			TimeUnit.SECONDS.sleep(1);
 		}catch(InterruptedException e) {}
 		gameLoop();
 	}
@@ -48,7 +53,9 @@ public class Game_Main {
 		//loop all the players if players has no health delete it and continue
 		//Move the players
 		//loop projectiles, move , loop items, loop boundary
-		players.get(0).move();
+		for(int i=0; i < players.size(); i++) {
+			players.get(i).move();
+		}
 	}
 	
 	private static void paint() {

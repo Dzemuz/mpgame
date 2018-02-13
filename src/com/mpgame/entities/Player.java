@@ -62,11 +62,28 @@ public class Player {
 	}
 	
 	//metody
-	public void move() {	//do poprawy(przy krawêdziach siê nie porusza)
+	public void move1() {	//do poprawy(przy krawêdziach siê nie porusza)
 		Point p = new Point(cPos.x + xVel, cPos.y + yVel);
 		if(p.x < 690 && p.y < 690 && p.x >= 0 && p.y >= 0 /*&& !Util.inBoundaries(Game_Main.map.boundaries, new Rectangle(p.x, p.y, 10, 10))*/){
 			pPos = cPos;
 			cPos = p;
+		}
+	}
+	public void move() {
+		Point p = new Point(cPos.x + xVel, cPos.y + yVel);
+		if(p.x <= 690 && p.y <= 690 && p.x >= 0 && p.y >= 0 /*&& !Util.inBoundaries(Game_Main.map.boundaries, new Rectangle(p.x, p.y, 10, 10))*/){
+			pPos = cPos;
+			cPos = p;
+		}
+		if((p.x == 690+2 || p.x == 0-2) && yVel != 0 && p.y <= 690 && p.y >= 0) //ruszanie siê przy krawêdzi x po osi y
+		{
+			pPos = cPos;
+			cPos.y += yVel;
+		}
+		if((p.y == 690+2 || p.y == 0-2) && xVel != 0 && p.x <= 690 && p.x >= 0) //ruszanie siê przy krawêdzi x po osi y
+		{
+			pPos = cPos;
+			cPos.x += xVel;
 		}
 	}
 	
@@ -86,6 +103,8 @@ public class Player {
 		if(left) xVel = -speed;
 		if(right) xVel = speed;
 		
+		if(up && down) yVel = 0;	//gdy wcisniete 2 klawisze na raz stañ w miejscu
+		if(left && right) xVel = 0;	
 	}
 	
 	public void keyPressed(KeyEvent e) {

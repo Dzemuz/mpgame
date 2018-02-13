@@ -67,6 +67,8 @@ public class Frame {
 			}
 					
 		});
+		
+		
 		gameView.addFocusListener(new FocusListener(){
 
 			@Override
@@ -84,6 +86,7 @@ public class Frame {
 			
 	});
 	}
+	
 	private void initPlayerEvents() {
 		gameView.addKeyListener(new KeyAdapter() {
 			@Override

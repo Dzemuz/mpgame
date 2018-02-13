@@ -9,7 +9,8 @@ import com.mpgame.entities.Player;
 
 public class GameView extends JPanel{
 	public static int fps = 0;
-	
+	public static int playerWidth = 10;
+	public static int playerHeight = 10;
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
@@ -59,6 +60,10 @@ public class GameView extends JPanel{
 		//debug+
 		g2.drawString("Wcisn¹³eœ dó³: " + Game_Main.player.down, 520, 20);
 		g2.drawString("pozycja gracza: " + Game_Main.player.cPos, 350, 40);
+		g2.drawString("pozycja pPos: " + Game_Main.player.pPos, 350, 50);
+		g2.drawString("nickname: " + Game_Main.player.username, 350, 20);
+		//g2.drawString("xvel: " + Game_Main.player.xVel, 300, 20);
+		//g2.drawString("yvel: " + Game_Main.player.yVel, 300, 40);
 	}
 	/*public void drawItems(Graphics2D g2) {
 	for(Item item : Game_Main.map.items) {
@@ -69,9 +74,9 @@ public class GameView extends JPanel{
 	public void drawPlayers(Graphics2D g2) {
 		//for(Player player : Game_Main.players) {
 			g2.setColor(Game_Main.player.color);
-			g2.fillRect(Game_Main.player.cPos.x, Game_Main.player.cPos.y, 10, 10);
+			g2.fillRect(Game_Main.player.cPos.x, Game_Main.player.cPos.y, playerWidth, playerHeight);
 			g2.setColor(Color.BLACK);
-			g2.drawRect(Game_Main.player.cPos.x, Game_Main.player.cPos.y, 10, 10);
+			g2.drawRect(Game_Main.player.cPos.x, Game_Main.player.cPos.y, playerWidth, playerHeight);
 		//}
 	}/*
 	public void drawProjectiles(Graphics2D g2) {

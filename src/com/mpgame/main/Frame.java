@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import com.mpgame.entities.Projectile;
+
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -96,6 +99,15 @@ public class Frame {
 			@Override
 			public void keyReleased(KeyEvent key) {
 				Game_Main.player.keyReleased(key);
+			}
+		});
+		gameView.addMouseListener(new MouseAdapter(){
+			
+			@Override
+			public void mouseClicked(MouseEvent mouse){
+				//Game_Main.player. JE¯ELI klikniemy mamy stworzyæ nowy objekt-pocisk
+				Projectile pro = new Projectile(Game_Main.player);
+				Game_Main.player.liveAmmo.add(pro);
 			}
 		});
 	}

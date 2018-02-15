@@ -3,6 +3,7 @@ package com.mpgame.entities;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class Player {
 	public String username;
@@ -25,12 +26,16 @@ public class Player {
 	public Point cPos;
 	public Point pPos;
 	
+	public ArrayList<Projectile> liveAmmo;
+	
 	
 	public Player(String username, Color color) {
 		this.username = username;
 		this.color = color;
 		this.health = 100;
 		this.totalHealth = 100;
+		
+		this.liveAmmo = new ArrayList<Projectile>();
 		
 		cPos = new Point(300,300);
 		pPos = new Point(300,300);
@@ -62,13 +67,13 @@ public class Player {
 	}
 	
 	//metody
-	public void move1() {	//do poprawy(przy krawêdziach siê nie porusza)
+	/*public void move1() {	//stare move nie rusza sie po krawedziach
 		Point p = new Point(cPos.x + xVel, cPos.y + yVel);
-		if(p.x < 690 && p.y < 690 && p.x >= 0 && p.y >= 0 /*&& !Util.inBoundaries(Game_Main.map.boundaries, new Rectangle(p.x, p.y, 10, 10))*/){
+		if(p.x < 690 && p.y < 690 && p.x >= 0 && p.y >= 0 /*&& !Util.inBoundaries(Game_Main.map.boundaries, new Rectangle(p.x, p.y, 10, 10))){
 			pPos = cPos;
 			cPos = p;
 		}
-	}
+	}*/
 	public void move() {
 		Point p = new Point(cPos.x + xVel, cPos.y + yVel);
 		if(p.x <= 690 && p.y <= 690 && p.x >= 0 && p.y >= 0 /*&& !Util.inBoundaries(Game_Main.map.boundaries, new Rectangle(p.x, p.y, 10, 10))*/){

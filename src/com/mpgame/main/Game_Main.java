@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 
 import com.mpgame.entities.Player;
+import com.mpgame.entities.Projectile;
 
 public class Game_Main {
 	public static Frame window;
@@ -54,7 +55,19 @@ public class Game_Main {
 		//Move the players
 		//loop projectiles, move , loop items, loop boundary
 		for(int i=0; i < players.size(); i++) {
-			players.get(i).move();
+			Player eplayer = players.get(i);
+			eplayer.move();
+			
+			ArrayList<Projectile> projs = eplayer.liveAmmo;
+			
+			for(int j=0; j < eplayer.liveAmmo.size(); j++) {
+				Projectile proj = projs.get(j);
+
+				if(proj.move()) {
+					
+				}else
+					projs.remove(j);
+			}
 		}
 	}
 	
